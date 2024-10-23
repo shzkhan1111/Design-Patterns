@@ -8,6 +8,7 @@ namespace ConsoleApp1
     {
         private static MemoryCache _cache;
         private static int i = 0;
+        private static object _cachelock = new object();
         // constructor is private 
         //cant create via new keyword
         private MemoryCache()
@@ -29,7 +30,20 @@ namespace ConsoleApp1
         //create or return an existing instance
         public static MemoryCache Create()
         {
-            return _cache ?? (_cache = new MemoryCache());
+            //return _cache ?? (_cache = new MemoryCache());
+            if (_cache == null)
+            {
+                lock (_cache)
+                {
+                    if (_cache == null)
+                    {
+                        return _cache = new MemoryCache();
+                    }
+                }   
+            }
+
+
+            return _cache;
         }
     }
 }
