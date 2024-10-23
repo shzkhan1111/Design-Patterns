@@ -22,10 +22,10 @@ namespace ConsoleApp1
         /// as soom your application start static ctor is caled so 1 instance created at the run time 
         /// 1000 singleton time consuming
         /// </summary>  
-        static MemoryCache()
-        {
-            _cache = new MemoryCache();
-        }
+        //static MemoryCache()
+        //{
+        //    _cache = new MemoryCache();
+        //}
 
         //create or return an existing instance
         public static MemoryCache Create()
@@ -33,7 +33,7 @@ namespace ConsoleApp1
             //return _cache ?? (_cache = new MemoryCache());
             if (_cache == null)
             {
-                lock (_cache)
+                lock (_cachelock)
                 {
                     if (_cache == null)
                     {
