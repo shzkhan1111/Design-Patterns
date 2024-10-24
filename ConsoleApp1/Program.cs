@@ -7,7 +7,7 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            
+            new ExecMainCompositeDesignPattern().ExecMain();
             Console.WriteLine("Hello World!");
         }
     }
